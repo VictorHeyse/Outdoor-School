@@ -1,22 +1,30 @@
 import './App.css';
+import React from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import "./index.css";
+import Root from "./routes/root";
+import ErrorPage from "./error-page";
+
+const router = createBrowserRouter([
+  {
+      path: "/",
+      element: <Root />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "activiteiten/",
+          element: <div>Test!</div>,
+        },
+      ],
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
